@@ -101,6 +101,7 @@ function third() {
   console.log(a + "b" + "c" + d); // b i c muszą być jako tekst bo ta funckja nie ma dostępu do tych zmiennych. Lexical scoping
 }
  */
+
 ///////////////////////////////////////
 // Lecture: The this keyword
 //console.log(this);
