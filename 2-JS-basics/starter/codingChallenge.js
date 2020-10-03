@@ -41,30 +41,29 @@ John likes to tip
 */
 
 var john = {
-    fullName: 'John Smith',
-    bills: [124, 48, 268, 180, 42],
-    calcTips: function() {
-        var percent = 0;
-        var tips = [];
-        var finallyPaid = [];
-        for (var i = 0; i < this.bills.length; i++) {
-            if (bills[i] < 50) {
-                percent = 0.2;
-            } else if (bills[i] <= 200) {
-                percent = 0.15;
-            } else {
-                percent = 0.1;
-            }
-            tips[i] = this.bills[i] * percent;
-            finallyPaid[i] = this.bills[i] + tips[i];
-        }
-        return 
+  fullName: "John Smith",
+  bills: [124, 48, 268, 180, 42],
+  calcTips: function () {
+    var percent = 0;
+    var tips = [];
+    var finallyPaid = [];
+    for (var i = 0; i < this.bills.length; i++) {
+      if (bills[i] < 50) {
+        percent = 0.2;
+      } else if (bills[i] <= 200) {
+        percent = 0.15;
+      } else {
+        percent = 0.1;
+      }
+      tips[i] = this.bills[i] * percent;
+      finallyPaid[i] = this.bills[i] + tips[i];
     }
-    //calcTips() {map switch}
-}
+    return;
+  },
+  //calcTips() {map switch}
+};
 
 console.log(john.calcTips());
-
 
 /*
 function jakiProcent(liczba) {

@@ -1,12 +1,160 @@
-// jak zrobić klasę żeby generowało metodę takie jak tiping rules na podtawie
+// jak zrobić klasę żeby generowało metodę takie jak tiping rules na podtawie //  w 'kslasie' miejsce na zmienne; w metodzie zrobic loopa typu:
+var tippingRules = [
+  [50, 0.3, true],
+  [100, 0.25, false],
+  [150, 0.15],
+];
+var b, t, d1, d2;
+function percent(
+  bill,
+  arrOfTippingRules,
+  defaultVal = 0.2,
+  defaultRule = true
+) {
+  for (var i = 0; i < arrOfTippingRules.length; i++) {
+    var arr = arrOfTippingRules[i];
+    if (bill < arr[0]) {
+      return arr[1];
+    } else if (arr.length === 2) {
+      if (arr[2] && bill === arr[0]) {
+        return arr[1];
+      }
+    } else {
+      if (defaultRule && bill === arr[0]) {
+        return arr[1];
+      }
+    }
+  }
+  return defaultVal;
+}
+
+// nie wiem czy to działa ale mniej więcej coś takiego można by uzyć w metodzie
+// zeby sprawdzić trzeba by zmieniac poniższe wartośi i sparwdzać czy mi wyjdzie
+t = [
+  [50, 0.3, true],
+  [100, 0.25, false],
+  [150, 0.15],
+];
+d1 = 0.1;
+d2 = true;
+
+b = 49;
+/* t = [
+  [50, 0.3, true],
+  [100, 0.25, false],
+  [150, 0.15],
+];
+d1 = 0.1;
+d2 = true; */
+var p = percent(b, t, d1, d2);
+console.log("p: ", p, "b: ", b, "t: ", t, "d1: ", d1, "d2: ", d2);
+//
+b = 50;
+/* t = [
+  [50, 0.3, true],
+  [100, 0.25, false],
+  [150, 0.15],
+];
+d1 = 0.1;
+d2 = true; */
+var p = percent(b, t, d1, d2);
+console.log("p: ", p, "b: ", b, "t: ", t, "d1: ", d1, "d2: ", d2);
+//
+b = 51;
+/* t = [
+  [50, 0.3, true],
+  [100, 0.25, false],
+  [150, 0.15],
+];
+d1 = 0.1;
+d2 = true; */
+var p = percent(b, t, d1, d2);
+console.log("p: ", p, "b: ", b, "t: ", t, "d1: ", d1, "d2: ", d2); //
+b = 99;
+/* t = [
+  [50, 0.3, true],
+  [100, 0.25, false],
+  [150, 0.15],
+];
+d1 = 0.1;
+d2 = true; */
+var p = percent(b, t, d1, d2);
+console.log("p: ", p, "b: ", b, "t: ", t, "d1: ", d1, "d2: ", d2); //
+b = 100;
+/* t = [
+  [50, 0.3, true],
+  [100, 0.25, false],
+  [150, 0.15],
+];
+d1 = 0.1;
+d2 = true; */
+var p = percent(b, t, d1, d2);
+console.log("p: ", p, "b: ", b, "t: ", t, "d1: ", d1, "d2: ", d2); //
+b = 101;
+/* t = [
+  [50, 0.3, true],
+  [100, 0.25, false],
+  [150, 0.15],
+];
+d1 = 0.1;
+d2 = true; */
+var p = percent(b, t, d1, d2);
+console.log("p: ", p, "b: ", b, "t: ", t, "d1: ", d1, "d2: ", d2); //
+b = 149;
+/* t = [
+  [50, 0.3, true],
+  [100, 0.25, false],
+  [150, 0.15],
+];
+d1 = 0.1;
+d2 = true; */
+var p = percent(b, t, d1, d2);
+console.log("p: ", p, "b: ", b, "t: ", t, "d1: ", d1, "d2: ", d2); //
+b = 150;
+/* t = [
+  [50, 0.3, true],
+  [100, 0.25, false],
+  [150, 0.15],
+];
+d1 = 0.1;
+d2 = true; */
+var p = percent(b, t, d1, d2);
+console.log("p: ", p, "b: ", b, "t: ", t, "d1: ", d1, "d2: ", d2); //
+b = 151;
+/* t = [
+  [50, 0.3, true],
+  [100, 0.25, false],
+  [150, 0.15],
+];
+d1 = 0.1;
+d2 = true; */
+var p = percent(b, t, d1, d2);
+console.log("p: ", p, "b: ", b, "t: ", t, "d1: ", d1, "d2: ", d2);
+console.log(`function percent(bill, arrOfTippingRules, defaultVal = 0.2, defaultRule = true) {
+  for (var i = 0; i < arrOfTippingRules.length; i++) {
+    var arr = arrOfTippingRules[i];
+    // jeżlei mniejszy
+    if (bill < arr[0]) {return arr[1]}
+    // jeżeli równy
+    else if (arr.length === 2) {
+      // jeżlei jest reguła dla zakresu
+      if (arr[2] && bill === arr[0]) {return arr[1]}
+      // ogólna reguła
+    } else {
+      if (defaultRule && bill === arr[0]) {return arr[1]}
+    }
+  }
+  // jak żaden z zakesów nie zadziała z jakiegoś powodu (np brak zakresów)
+  return defaultVal;
+};`);
+
+//
+
 // 1. wartośc domuślna np. 10% i opcjanlne: czy domyślne LUB RÓWNE?, jeżeli nie zaznaczono to tak
 // array 2 wymarowy: [[kwota(np. 50$), procent(np. 0.3), opcjonalne-czy mniejsze LUB RÓWNE, ], [],...]
 // właściwie to co opisałem to juz jest metoda
 
 // ES6
-
-
-
 
 /*
 var john = {
