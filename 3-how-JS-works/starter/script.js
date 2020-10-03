@@ -54,13 +54,52 @@ var foo2 = function () {
 foo2();
 console.log(17, age2, "65!!"); // 65
  */
-// jak to działa w kontekscie oboektów i let oraz const??????
 // co ciekawe
 // var foo2 = function () {
 // daje taki sam efekt jak
 // function foo2() {
 // ze zwykłym foo tez nie ma znaczenia czy function decleration czy expression
 
+// jak to działa w kontekscie OBIEKTÓW:
+/* 
+// FUNCTIONS
+calculateAge({ year: 1965 });
+
+function calculateAge(y) {
+  console.log(1, 2016 - y.year, 51); // 51
+}
+
+// retirement({ year: 1965 }); // doesn't work because function expression below tied to varaible retirement is not hoisted, function declerations are
+var retirement = function (y) {
+  console.log(2, 65 - (2016 - y.year));
+};
+
+//VARIABLES
+// console.log(3, age.a, "undefined"); // Cannot read property 'a' of undefined
+var age = { a: 23 };
+console.log(4, age.a, "23"); // 23
+
+var foo = function () {
+  console.log(5, age, "{ a: 23 }"); //
+  age.a = 65; //
+  console.log(6, age.a, "65"); // 65
+  // OR
+  //   console.log(5, age, "undefined"); //
+  //   var age = { a: 65 }; //
+  //   console.log(6, age.a, "65"); // 65
+  // OR:
+  //   console.log(5, age, "{ a: 23 }"); // hoisted but undefined!!!! becuse of line below
+  //   age = { a: 65 }; // jak jest var to to jest zmienna w środku i nic nie zmienia na zewnątrz, dodatkowo w linicje wyzej w związku z tym jest undifiend
+  //   console.log(6, age.a, "65"); // 65
+};
+foo();
+console.log(7, age.a, "23/65"); // 23 if age declared in foo, 65 if not // 65 if not declared, only value of age changed - zgadza się, czaję
+// czyli w przypadku primitives jest jak w przypadku oboektów. A wydawało mi się, że ma być inzcaej. Że primitives się zmieniało, a oboekty zmieniało się sam obiekt...
+// WTF?????????????????????????????????????????
+
+// jak to działa z let oraz const??????:
+
+ */
 ///////////////////////////////////////
 // Lecture: Scoping
 
@@ -111,7 +150,7 @@ function calculateAge(year) {
     console.log(2016 - year);
     console.log(this);
 */
-
+/* 
 var john = {
   name: "John",
   yearOfBirth: 1990,
@@ -119,28 +158,26 @@ var john = {
     console.log(this);
     console.log(2016 - this.yearOfBirth);
 
-    /* // ta funkcja zwraca window bo jest wewnętrzna
-    function innerFunction() {
-      console.log(this);
-    }
-    innerFunction();
-  },
- */
+//     // ta funkcja zwraca window bo jest wewnętrzna
+//     function innerFunction() {
+//       console.log(this);
+//     }
+//     innerFunction();
+//   },
 
-    /*   // ta funkcja TAKŻE zwraca window bo jest wewnętrzna
-    var innerFunction2 = function () {
-      console.log(this);
-    };
-    innerFunction2();
-  },
- */
-    /* 
-    // ta też
-    (function () {
-      console.log(this);
-    })();
-  }, 
- */
+//       // ta funkcja TAKŻE zwraca window bo jest wewnętrzna
+//     var innerFunction2 = function () {
+//       console.log(this);
+//     };
+//     innerFunction2();
+//   },
+    
+//     // ta też
+//     (function () {
+//       console.log(this);
+//     })();
+//   }, 
+
 
     //  ta nie, ta zwraca John object bo fat arrow sprawia, że object się nie zmienia
     (() => {
@@ -158,3 +195,4 @@ var mike = {
 
 mike.calculateAge = john.calculateAge;
 mike.calculateAge();
+ */
