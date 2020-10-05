@@ -94,12 +94,116 @@ var foo = function () {
 };
 foo();
 console.log(7, age.a, "23/65"); // 23 if age declared in foo, 65 if not // 65 if not declared, only value of age changed - zgadza się, czaję
-// czyli w przypadku primitives jest jak w przypadku oboektów. A wydawało mi się, że ma być inzcaej. Że primitives się zmieniało, a oboekty zmieniało się sam obiekt...
-// WTF?????????????????????????????????????????
+*/
+/* 
+// JESZCZE RAZ:
+// NIE PASSED JAKO ARUMENT
+var agePrimitive1 = 23;
+var ageObject1 = { a: 23 };
+
+var foo1 = function () {
+  console.log("01", agePrimitive1, "23 / undefined if redeclared");
+  console.log("02", ageObject1, "{ a: 23 } / undefined if redeclared");
+
+  // agePrimitive1 = 65;
+  var agePrimitive1 = 65; // jak jest var to to jest zmienna w środku i nic nie zmienia na zewnątrz, dodatkowo 2 linijki wyżej w związku z tym jest undifiend
+
+  // ageObject1 = { a: 65 }; //
+  var ageObject1 = { a: 65 }; // jak jest var to to jest zmienna w środku i nic nie zmienia na zewnątrz, dodatkowo 2 linijki wyżej w związku z tym jest undifiend
+
+  console.log("03", agePrimitive1, "65"); // 65
+  console.log("04", ageObject1.a, "65"); // 65
+};
+
+foo1();
+
+console.log("05", agePrimitive1, "65 / 23 if redeclared"); // 65
+console.log("06", ageObject1.a, "65 / 23 if redeclared"); // 23 if age declared in foo, 65 if not // 65 if not declared, only value of age changed - zgadza się, czaję. czy można, wolno, to jest ok, good practice deklarować wewnątrz funckji zmienną, która jest zadeklarowana i zdefiniowana na zewnątrz?
+
+// PASSED JAKO ARUMENT
+var agePrimitive2 = 23;
+var ageObject2 = { a: 23 };
+
+var foo2 = function (x, y, z) {
+  // jemu się zdaje, że nie użyłem x ani z
+  console.log("07", agePrimitive2, 23);
+  console.log("08", ageObject2.a, 23);
+
+  x = 65;
+  // y = { a: 65 }; //
+  y.a = 65;
+
+  console.log("09", agePrimitive2, "23 nie 65!!"); // 65
+  console.log(
+    "10",
+    ageObject2.a,
+    "65 jeżeli y.a = 65 // x = 65 -> 23 nie 65!!"
+  ); // 65
+};
+
+foo2(agePrimitive2, ageObject2);
+
+console.log("11", agePrimitive2, "23 nie 65!!"); // 65
+console.log("12", ageObject2.a, "65 jeżeli y.a = 65 // x = 65 -> 23 nie 65!!"); // 23 if age declared in foo, 65 if not // 65 if not declared, only value of age changed - zgadza się, czaję. czy można, wolno, to jest ok, good practice deklarować wewnątrz funckji zmienną, która jest zadeklarowana i zdefiniowana na zewnątrz?
+ */
+// czyli w przypadku primitives jest jak w przypadku oboektów (chyba, że pdajesz jako argument).
+// czaję, tylko czemu podanie funcji jako argument lub zapisanie na sztywno czyni różnicę?
 
 // jak to działa z let oraz const??????:
 
- */
+// LET:
+let agePrimitive1 = 23;
+let ageObject1 = { a: 23 };
+
+let foo1 = function () {
+  console.log("01", agePrimitive1, "23 / wywala błąd if redeclared");
+  console.log("02", ageObject1, "{ a: 23 } / wywala błąd if redeclared");
+
+  agePrimitive1 = 65;
+  // let agePrimitive1 = 65; // jak jest let to to jest zmienna w środku i nic nie zmienia na zewnątrz, dodatkowo 2 linijki wyżej w związku z tym jest undifiend
+
+  ageObject1 = { a: 65 }; //
+  // let ageObject1 = { a: 65 }; // jak jest let to to jest zmienna w środku i nic nie zmienia na zewnątrz, dodatkowo 2 linijki wyżej w związku z tym jest undifiend
+
+  console.log("03", agePrimitive1, "65"); // 65
+  console.log("04", ageObject1.a, "65"); // 65
+};
+
+foo1();
+
+console.log("05", agePrimitive1, "65 / 23 if redeclared"); // 65
+console.log("06", ageObject1.a, "65 / 23 if redeclared"); // 23 if age declared in foo, 65 if not // 65 if not declared, only value of age changed - zgadza się, czaję. czy można, wolno, to jest ok, good practice deklarować wewnątrz funckji zmienną, która jest zadeklarowana i zdefiniowana na zewnątrz?
+
+// PASSED JAKO ARUMENT
+let agePrimitive2 = 23;
+let ageObject2 = { a: 23 };
+
+let foo2 = function (x, y, z) {
+  // jemu się zdaje, że nie użyłem x ani z
+  console.log("07", agePrimitive2, 23);
+  console.log("08", ageObject2.a, 23);
+
+  x = 65;
+  y = { a: 65 }; //
+  // y.a = 65;
+
+  console.log("09", agePrimitive2, "23 nie 65!!"); // 65
+  console.log(
+    "10",
+    ageObject2.a,
+    "65 jeżeli y.a = 65 // x = 65 -> 23 nie 65!!"
+  ); // 65
+};
+
+foo2(agePrimitive2, ageObject2);
+
+console.log("11", agePrimitive2, "23 nie 65!!"); // 65
+console.log("12", ageObject2.a, "65 jeżeli y.a = 65 // x = 65 -> 23 nie 65!!"); // 23 if age declared in foo, 65 if not // 65 if not declared, only value of age changed - zgadza się, czaję. czy można, wolno, to jest ok, good practice deklarować wewnątrz funckji zmienną, która jest zadeklarowana i zdefiniowana na zewnątrz?
+
+// pomiędzy let i var nie ma różnicy za wyjkątkiem, że nie można 2. raz deklarować zmiennej. spoko
+
+// CONST:
+
 ///////////////////////////////////////
 // Lecture: Scoping
 
