@@ -572,7 +572,7 @@ In this case, DON'T call the function from task 8.
 
 11. Display the score in the console. Use yet another method for this.
 */
-
+/* 
 (function () {
   var questions = [];
   var Question = function (phrase, answers, correctAnswer) {
@@ -661,7 +661,7 @@ In this case, DON'T call the function from task 8.
   // start the game
   game();
 })();
-
+ */
 /* 
 // punkt 11 jest dziwny więc sprawdziłem jak działa fr kodu:
 function score() {
