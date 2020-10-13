@@ -134,8 +134,8 @@ function change(a, b) {
 
 change(age, obj); //
 console.log(age, obj); // nie zmieniło wieku. Kurde. 
-Funkcja change stworzyła kopię i na kopii dokonała zmiany. Trudno. ok. A jakbym chciał to faktycznie zrobić?
-*/
+// Funkcja change stworzyła kopię i na kopii dokonała zmiany. Trudno. ok. A jakbym chciał to faktycznie zrobić?
+ */
 
 ////////////////////////////////////// 65
 /*
